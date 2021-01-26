@@ -1,0 +1,184 @@
+module JSONBuilder;
+
+use JSONObject: all;
+use String: {string};
+use World: {TheWorld};
+use Terminal: {TheTerminal};
+
+export all;
+
+// Creation
+external JSONObject createJSONObject();
+	#pragma effect TheWorld
+	#pragma linkname "create_object"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [0]
+external JSONObject createJSONArray();
+	#pragma effect TheWorld
+	#pragma linkname "create_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [0]
+
+// Element removal
+external void removeElement( JSONObject& object, string key);
+	#pragma linkname "remove_item_from_object"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1,2]
+external void removeElement( JSONObject& object, int index);
+	#pragma linkname "remove_item_from_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1,2]
+
+// Booleans
+external void setBool( JSONObject& object, string key, bool boolean);
+	#pragma linkname "set_bool"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+external void setTrue( JSONObject& object, string key);
+	#pragma linkname "set_true"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+external void setFalse( JSONObject& object, string key);
+	#pragma linkname "set_false"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+
+// Numbers
+external void setInt( JSONObject& object, string key, int value);
+	#pragma linkname "set_int"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+external void setFloat( JSONObject& object, string key, float value);
+	#pragma linkname "set_float"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+external void setDouble( JSONObject& object, string key, double value);
+	#pragma linkname "set_double"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+
+// String
+external void setString( JSONObject& object, string key, string value);
+	#pragma linkname "set_string"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+
+// Arrays
+external void setArray( JSONObject& object, string key, JSONObject array);
+	#pragma linkname "set_object"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+	#pragma refcounting [0,2]
+
+// Objects
+external void setObject( JSONObject& object, string key, JSONObject innerObject);
+	#pragma linkname "set_object"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+	#pragma refcounting [0,2]
+
+// Array manipulation
+//// Booleans
+////// Insertion
+external void addBoolToArray( JSONObject& array, bool boolean);
+	#pragma linkname "add_bool_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+external void addTrueToArray( JSONObject& array);
+	#pragma linkname "add_true_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1]
+external void addFalseToArray( JSONObject& array);
+	#pragma linkname "add_false_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1]
+////// Replacement
+external void replaceWithBoolInArray( JSONObject& array, bool boolean, int index);
+	#pragma linkname "replace_with_bool_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+external void replaceWithTrueInArray( JSONObject& array, int index);
+	#pragma linkname "replace_with_true_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+external void replaceWithFalseInArray( JSONObject& array, int index);
+	#pragma linkname "replace_with_false_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+//// Numbers
+////// Insertion
+external void addIntToArray( JSONObject& array, int number);
+	#pragma linkname "add_int_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+external void addFloatToArray( JSONObject& array, float number);
+	#pragma linkname "add_float_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+external void addDoubleToArray( JSONObject& array, double number);
+	#pragma linkname "add_double_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+////// Replacement
+external void replaceWithIntInArray( JSONObject& array, int number, int index);
+	#pragma linkname "replace_with_int_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+external void replaceWithDoubleInArray( JSONObject& array, double number, int index);
+	#pragma linkname "replace_with_double_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+external void replaceWithFloatInArray( JSONObject& array, float number, int index);
+	#pragma linkname "replace_with_float_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+//// String
+external void addStringToArray( JSONObject& array, string value);
+	#pragma linkname "add_string_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+external void replaceWithStringInArray( JSONObject& array, string value, int index);
+	#pragma linkname "replace_with_string_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+//// Objects
+external void addObjectToArray( JSONObject& array, JSONObject object);
+	#pragma linkname "add_object_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+	#pragma refcounting [0,1]
+external void replaceWithObjectInArray( JSONObject& array, JSONObject object, int index);
+	#pragma linkname "replace_with_object_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+	#pragma refcounting [0,1]
+// //// Arrays
+external void addArrayToArray( JSONObject& outer_array, JSONObject inner_array);
+	#pragma linkname "add_object_to_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2]
+	#pragma refcounting [0,1]
+external void replaceWithArrayInArray( JSONObject& outer_array, JSONObject inner_array, int index);
+	#pragma linkname "replace_with_object_in_array"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1, 2, 3]
+	#pragma refcounting [0,1]
+
+// JSON object traversal
+external JSONObject changeFocusToChild( JSONObject object, string key);
+	#pragma linkname "change_focus"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1,2,3]
+	#pragma refcounting [0,1]
+external JSONObject changeFocusToRoot( JSONObject object);
+	#pragma linkname "focus_root"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1,2]
+	#pragma refcounting [0,1]
+
+// Input Output
+external void serializeJSONObject( JSONObject& object);
+	#pragma effect TheTerminal
+	#pragma linkname "serialize_object"
+	#pragma linkobj "src/JSONBuilder/json_builder.o"
+	#pragma linksign [1]
