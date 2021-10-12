@@ -34,11 +34,15 @@ This is a Sac module that wraps around some of the [cJSON](https://github.com/Da
 	- to the root JSON object
 
 ## Build Instructions
-You will need to have installed sac2c and have a copy of the Stdlib installed as well.
+You will need to have installed sac2c and have a copy of the Stdlib installed as well. It is also assumed that the submodules are initialized and updated correctly either via cloning with `--recurse-submodules` or as follows:
 ```bash
-cd JSON
-git submodule init
-git submodule update
+git submodules init
+git submodules update
+```
+
+When submodules are in order follow the following build instructions to build the library:
+```bash
+mkdir build
 cd build
 cmake ..
 make -j4
