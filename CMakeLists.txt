@@ -21,6 +21,7 @@ LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 FIND_PACKAGE (cJSON REQUIRED)
 
 SET (SAC2C_EXTRA_INC "-I${CJSON_INCLUDE_DIR}" CACHE STRING "Extra include files that should be used by sac2c")
+SET (SAC2C_CPP_INC "-E ${CJSON_LIBRARIES}")
 
 # if building generically, we need to make sure sac2c supports this
 IF (BUILDGENERIC)
