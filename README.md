@@ -47,10 +47,3 @@ cd build
 cmake ..
 make -j4
 ```
-
-### Troubleshooting
-#### macOS 11 (Big Sur)
-Whenever the error:
-`ld: library not found for -lcjson`
-is encountered it can be remedied by running the following export.
-`export LIBRARY_PATH=$LIBRARY_PATH:{/absolute/path/to/cjson/lib/}`
