@@ -7,3 +7,5 @@ src/tree/
 
 *.out
 *.out.c
+
+.DS_Store
