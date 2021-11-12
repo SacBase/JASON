@@ -41,4 +41,4 @@ FOREACH (TARGET IN ITEMS ${TARGETS})
 ENDFOREACH ()
 
 # This build target is responsible for generating the package sac2crc file
-CREATE_SAC2CRC_TARGET ("json" "${DLL_BUILD_DIR}" "${DLL_BUILD_DIR}" "")
+CREATE_SAC2CRC_TARGET ("json" "${DLL_BUILD_DIR}" "${DLL_BUILD_DIR}" "-L${CJSON_LIBRARIES};-lcjson")
