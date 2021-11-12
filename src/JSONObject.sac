@@ -1,0 +1,8 @@
+class JSONObject;
+
+external classtype;
+	#pragma freefun "delete_json_object"
+	#pragma linkobj "src/JSONObject/json_object.o"
+	#pragma linkwith "cjson"
+
+export all;
